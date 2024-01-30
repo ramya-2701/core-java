@@ -1,27 +1,48 @@
 package hashMap;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 public class CharacterCountTest {
-
     @Test
-    public void testPrintCharacterCounts() {
-        String inputString = "test string";
-        String expectedOutput = "t-3, e-1, s-2,  -1, r-1, i-1, n-1, g-1, ";
-        CharacterCount.printCharacterCounts(inputString);
-        System.out.println();
-        Assertions.assertEquals(expectedOutput, System.out.toString());
+    public void testPositiveResponse() {
+        String input = "test string";
+        String output = getOutput(input);
+        assertTrue(output.contains("t-3"));
+        assertTrue(output.contains("e-1"));
+        assertTrue(output.contains("s-2"));
+        assertTrue(output.contains("r-1"));
+        assertTrue(output.contains("i-1"));
+        assertTrue(output.contains("n-1"));
+        assertTrue(output.contains("g-1"));
+    }
+    @Test
+    public void testNegativeResponse() {
+        String input = "";
+        assertEquals("Input string is null or empty", getOutput(input).trim());
+    }
+    @Test
+    public void testNullResponse() {
+        String input = null;
+        assertEquals("Input string is null or empty", getOutput(input).trim());
     }
 
-    @Test
-    public void testPrintCharacterCountsEmptyString() {
-        String inputString = "";
-        String expectedOutput = "";
-        System.out.println("Expected Output: " + expectedOutput);
-        System.out.print("Actual Output: ");
-        CharacterCount.printCharacterCounts(inputString);
-        System.out.println();
-        Assertions.assertEquals(expectedOutput, System.out.toString());
+    private String getOutput(String input) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        PrintStream oldOut = System.out;
+
+        // Redirect System.out to printStream
+        System.setOut(printStream);
+
+        // Capture the output
+        CharacterCount.countCharacters(input);
+
+        // Reset System.out
+        System.out.flush();
+        System.setOut(oldOut);
+
+        // Return the captured output
+        return outputStream.toString().replaceAll("\\s+", " ").trim();
     }
 }
