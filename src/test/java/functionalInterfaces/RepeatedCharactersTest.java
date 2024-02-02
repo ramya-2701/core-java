@@ -1,31 +1,35 @@
 package functionalInterfaces;
-import static org.junit.Assert.*;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RepeatedCharactersTest {
-
     @Test
-    public void testCharacterRepetitionWithRepeats() {
-        String inputString = "programming";
-        RepeatedCharacters.characterRepetation(inputString);
+    public void testCharacterRepetitionWithNoRepeats() {
+        String input = "abcdef";
+        String result = RepeatedCharacters.characterRepetition(input);
+        assertEquals("", result);
     }
-
     @Test
-    public void testCharacterRepetitionWithoutRepeats() {
-        String inputString = "abcdef";
-        RepeatedCharacters.characterRepetation(inputString);
+    public void testCharacterRepetitionWithSingleRepeat() {
+        String input = "abcdeff";
+        String result = RepeatedCharacters.characterRepetition(input);
+        assertEquals("f", result);
     }
-
     @Test
-    public void testCharacterRepetitionEmptyString() {
-        String inputString = "";
-        RepeatedCharacters.characterRepetation(inputString);
+    public void testCharacterRepetitionWithMultipleRepeats() {
+        String input = "aabbcc";
+        String result = RepeatedCharacters.characterRepetition(input);
+        assertEquals("abc", result);
     }
-
     @Test
-    public void testCharacterRepetitionSingleCharacter() {
-        String inputString = "a";
-        RepeatedCharacters.characterRepetation(inputString);
-
+    public void testCharacterRepetitionWithMixedRepeats() {
+        String input = "aabcbdeff";
+        String result = RepeatedCharacters.characterRepetition(input);
+        assertEquals("abf", result);
+    }
+    @Test
+    public void testCharacterRepetitionWithEmptyString() {
+        String input = "";
+        String result = RepeatedCharacters.characterRepetition(input);
+        assertEquals("", result);
     }
 }
