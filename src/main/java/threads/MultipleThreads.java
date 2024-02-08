@@ -21,7 +21,7 @@ public class MultipleThreads{
 
     class EvenNum implements Runnable {
         public void run() {
-            for (int i = 0; i < 60; i += 2) {
+            for (int i = 0; i <= 60; i += 2) {
                 System.out.println("ThreadEven"+i);
             }
         }
