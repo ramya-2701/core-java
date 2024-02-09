@@ -11,19 +11,18 @@ public class MultipleThreads{
     }
 }
 
-    class OddNum implements Runnable {
-        public void run() {
-            for (int i = 1; i <= 11; i += 2) {
-                System.out.println("Threadodd"+i);
-            }
+class OddNum implements Runnable {
+    public void run() {
+        for (int i = 1; i <= 60; i += 2) {
+            System.out.println("Threadodd"+i);
         }
     }
+}
 
-    class EvenNum implements Runnable {
-        public void run() {
-            for (int i = 0; i < 11; i += 2) {
-                System.out.println("ThreadEven"+i);
-            }
+class EvenNum implements Runnable {
+    public void run() {
+        for (int i = 0; i <=60; i += 2) {
+            System.out.println("ThreadEven"+i);
         }
     }
-
+}
