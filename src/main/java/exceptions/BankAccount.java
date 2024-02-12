@@ -16,7 +16,7 @@ public class BankAccount extends Exception {
         this.balance = balance;
     }
 
-    public void withdraw(double amount) throws InsufficientFundsException, InvalidWithdrawalException {
+    public double withdraw(double amount) throws InsufficientFundsException, InvalidWithdrawalException {
         if (amount < 0) {
             throw new InvalidWithdrawalException("Attempting to withdraw a negative amount.");
         }
@@ -25,32 +25,8 @@ public class BankAccount extends Exception {
         }
         balance -= amount;
         System.out.println("Successful withdrawal.");
+        return balance;
     }
 }
-class Main{
-    public static void main(String[] args) {
-        BankAccount account = new BankAccount(1000);
-        try {
-            account.withdraw(500);
-        } catch (InsufficientFundsException e) {
-            System.out.println(e.getMessage());
-        } catch (InvalidWithdrawalException e) {
-            System.out.println(e.getMessage());
-        }
-        try {
-            account.withdraw(-200);
-        } catch (InsufficientFundsException e) {
-            System.out.println(e.getMessage());
-        } catch (InvalidWithdrawalException e) {
-            System.out.println(e.getMessage());
-        }
-        try {
-            account.withdraw(700);
-        } catch (InsufficientFundsException e) {
-            System.out.println(e.getMessage());
-        } catch (InvalidWithdrawalException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-}
+
 
